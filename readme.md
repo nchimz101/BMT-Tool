@@ -23,14 +23,6 @@ A modern redesign of BMT's financial dashboard and website, focusing on improved
 - 🔒 Security-first approach
 - 💼 Business-oriented solutions
 
-## Project Structure
-```
-/BMT Remake/
-├── index.html          # Landing page
-├── dashboard.html      # Financial dashboard
-├── README.md          # Project documentation
-└── assets/            # Project assets
-```
 
 ## Key Improvements
 1. Modern UI/UX Design
@@ -69,11 +61,6 @@ A modern redesign of BMT's financial dashboard and website, focusing on improved
 - Minimal dependencies
 - Mobile-first approach
 
-## Security Features
-- Secure transaction handling
-- Data encryption support
-- BOZ compliance
-- Privacy-focused design
 
 ## Contributing
 This is a concept redesign and not open for contributions. Please contact BMT directly for official development inquiries.
@@ -84,13 +71,6 @@ This is a concept redesign and not open for contributions. Please contact BMT di
 - Animations: AOS Library
 - Charts: Chart.js
 - Images: Unsplash, BMT
-
-## Contact
-For official BMT services and support:
-- Website: https://www.bmt.co.zm
-- Email: info@bmt.co.zm
-- Phone: +260 978 278964
-- Address: Plot No. 1234, Great East Road, Lusaka, Zambia
 
 ## License & Rights
 All rights reserved by BMT. This redesign is for demonstration purposes only and is not affiliated with or endorsed by BMT. All trademarks, logos, and brand names are the property of their respective owners.
@@ -124,7 +104,6 @@ This redesign concept:
 ## Contact Information
 For official BMT services and inquiries:
 - Email: info@bmt.co.zm
-- Phone: +260 xxxxxxxxx
 - Location: Lusaka, Zambia
 
 ---

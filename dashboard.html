@@ -26,31 +26,79 @@
         .chart-container {
             position: relative;
             height: 250px;
+            width: 100%;
         }
         @media (max-width: 768px) {
             .sidebar {
                 position: fixed;
-                left: -250px;
-                width: 250px;
+                left: -100%;
+                width: 100%;
                 height: 100vh;
                 transition: 0.3s;
                 z-index: 50;
+                background-color: white;
             }
             .sidebar.active {
                 left: 0;
             }
             .main-content {
                 margin-left: 0;
+                padding-top: 60px;
+            }
+            .chart-container {
+                height: 200px;
+            }
+        }
+        
+        /* Enhanced responsive grid system */
+        .dashboard-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        
+        .stats-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+        
+        /* Mobile overlay */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 40;
+        }
+        
+        .sidebar-overlay.active {
+            display: block;
+        }
+        
+        /* Responsive typography */
+        @media (max-width: 640px) {
+            .text-2xl {
+                font-size: 1.5rem;
+            }
+            .text-xl {
+                font-size: 1.25rem;
             }
         }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
+    <!-- Add overlay for mobile -->
+    <div class="sidebar-overlay" onclick="closeSidebar()"></div>
+
     <div class="flex min-h-screen">
         <!-- Sidebar -->
         <aside class="sidebar w-64 bg-white shadow-sm fixed md:relative">
             <div class="p-4 border-b flex items-center">
-                <img src="https://www.bmt.co.zm/assets/img/absa-logo-bg.png" alt="BMT Logo" class="h-8 w-auto mr-3">
+                <img src="/bmt_logo.png" alt="BMT Logo" class="h-8 w-auto mr-3">
                 <h1 class="text-xl font-bold text-primary">BMT</h1>
             </div>
             <nav class="p-4">
@@ -86,20 +134,21 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 p-4 main-content">
-            <!-- Mobile Menu Toggle -->
-            <button onclick="document.querySelector('.sidebar').classList.toggle('active')" 
-                    class="md:hidden fixed top-4 left-4 z-50 bg-white p-2 rounded-lg shadow">
-                <i class="bi bi-list text-lg"></i>
+        <main class="flex-1 p-4 main-content overflow-x-hidden">
+            <!-- Mobile Menu Toggle with enhanced visibility -->
+            <button onclick="toggleSidebar()" 
+                    class="md:hidden fixed top-4 left-4 z-50 bg-white p-2 rounded-lg shadow-lg">
+                <i class="bi bi-list text-xl"></i>
             </button>
 
-            <header class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-bold text-primary">Financial Dashboard</h2>
-                <span class="text-gray-700">260978278964</span>
+            <!-- Responsive header -->
+            <header class="flex flex-wrap justify-between items-center mb-6 gap-4">
+                <h2 class="text-xl md:text-2xl font-bold text-primary">Financial Dashboard</h2>
+                <span class="text-sm md:text-base text-gray-700">260978278964</span>
             </header>
 
-            <!-- Financial Overview -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+            <!-- Financial Overview with responsive grid -->
+            <div class="stats-grid mb-6">
                 <div class="bg-white p-4 rounded-lg shadow">
                     <h3 class="text-sm text-gray-600 mb-2">Running Balance</h3>
                     <p class="text-2xl font-bold text-primary">K148,971.00</p>
@@ -117,8 +166,8 @@
                 </div>
             </div>
 
-            <!-- Detailed Sections -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Detailed Sections with responsive grid -->
+            <div class="dashboard-grid">
                 <!-- Cash Flow Forecast -->
                 <div class="bg-white p-4 rounded-lg shadow">
                     <h3 class="text-primary font-semibold mb-3">Cash Flow Forecast</h3>
@@ -368,6 +417,45 @@
                 }
             });
         });
+
+        // Enhanced mobile menu handling
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('active');
+            document.querySelector('.sidebar-overlay').classList.toggle('active');
+        }
+
+        function closeSidebar() {
+            document.querySelector('.sidebar').classList.remove('active');
+            document.querySelector('.sidebar-overlay').classList.remove('active');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            const sidebar = document.querySelector('.sidebar');
+            const menuBtn = document.querySelector('button[onclick="toggleSidebar()"]');
+            
+            if (!sidebar.contains(e.target) && 
+                !menuBtn.contains(e.target) && 
+                sidebar.classList.contains('active')) {
+                closeSidebar();
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                closeSidebar();
+            }
+        });
+
+        // Responsive chart resizing
+        function resizeCharts() {
+            Chart.instances.forEach(chart => {
+                chart.resize();
+            });
+        }
+
+        window.addEventListener('resize', resizeCharts);
     </script>
 </body>
 </html>
