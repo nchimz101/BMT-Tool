@@ -89,12 +89,18 @@
                 padding-top: 60px;
             }
             .settings-nav {
-                position: static;
-                width: 100%;
+                position: static !important;
+                width: 100% !important;
                 margin-bottom: 1rem;
             }
+            .settings-content {
+                padding-left: 0 !important;
+            }
+            .settings-grid {
+                grid-template-columns: 1fr !important;
+            }
         }
-        
+
         .sidebar-overlay {
             display: none;
             position: fixed;
@@ -105,12 +111,33 @@
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 40;
         }
-        
+
         .sidebar-overlay.active {
             display: block;
         }
 
-        /* Additional responsive styles for settings */
+        @media (max-width: 640px) {
+            .settings-card {
+                margin-bottom: 1rem;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Enhanced settings navigation responsiveness */
+        .settings-layout {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 250px 1fr;
+        }
+
+        @media (max-width: 768px) {
+            .settings-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 1024px) {
             .settings-grid {
                 grid-template-columns: 1fr;
@@ -128,7 +155,7 @@
             </div>
             <nav class="p-4">
                 <ul class="space-y-2">
-                    <li><a href="index.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                    <li><a href="dashboard.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
                         <i class="bi bi-speedometer2 mr-3"></i>Dashboard
                     </a></li>
                     <li><a href="Transactions.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
@@ -175,9 +202,9 @@
             </header>
 
             <!-- Settings Layout -->
-            <div class="flex gap-6">
+            <div class="settings-layout">
                 <!-- Settings Navigation -->
-                <div class="w-64 bg-white rounded-lg shadow-sm p-4 h-fit sticky top-4 settings-nav" data-aos="fade-right">
+                <div class="settings-nav bg-white rounded-lg shadow-sm p-4 h-fit sticky top-4" data-aos="fade-right">
                     <nav class="space-y-1">
                         <a href="#company" class="nav-item flex items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
                             <i class="bi bi-building mr-3"></i>Company Settings
@@ -207,7 +234,7 @@
                 </div>
 
                 <!-- Settings Content -->
-                <div class="flex-1">
+                <div class="settings-content">
                     <!-- Company Settings Section -->
                     <section id="company" class="mb-8" data-aos="fade-up">
                         <h3 class="text-xl font-bold text-primary mb-4">Company Settings</h3>
@@ -705,6 +732,25 @@
                 }
             }
         });
+
+        // Enhanced responsive handling
+        function updateLayout() {
+            const isMobile = window.innerWidth <= 768;
+            const settingsNav = document.querySelector('.settings-nav');
+            
+            if (settingsNav) {
+                if (isMobile) {
+                    settingsNav.style.position = 'static';
+                    settingsNav.style.top = '0';
+                } else {
+                    settingsNav.style.position = 'sticky';
+                    settingsNav.style.top = '1rem';
+                }
+            }
+        }
+
+        window.addEventListener('resize', updateLayout);
+        document.addEventListener('DOMContentLoaded', updateLayout);
     </script>
 </body>
 </html>
