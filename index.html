@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMT - Business Made Transformative</title>
+    <link href="https://www.bmt.co.zm/assets/img/absa-logo-bg.png" rel="icon">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .pricing-card {
+            transition: transform 0.3s ease-in-out;
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #a61d4c, #ff4081);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .testimonial-slider {
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+        .testimonial-slide {
+            scroll-snap-align: start;
+        }
+        .scroll-top {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+        }
+        @media (max-width: 768px) {
+            .mobile-menu {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            .mobile-menu.active {
+                transform: translateX(0);
+            }
+        }
+        /* Responsive utilities */
+        .container-fluid {
+            width: 100%;
+            padding-right: 1rem;
+            padding-left: 1rem;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        
+        @media (max-width: 640px) {
+            .gradient-text {
+                font-size: 2.5rem;
+            }
+            .testimonial-slide {
+                width: 100% !important;
+            }
+            .pricing-card {
+                margin-bottom: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-text {
+                text-align: center;
+                padding: 0 1rem;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Enhanced mobile menu */
+        .mobile-menu {
+            height: 100vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Improved testimonials slider */
+        .testimonial-slider {
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .testimonial-slider::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Enhanced accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        /* Ribbon Banner Styles */
+        .ribbon {
+            width: 100%;
+            background-color: #fef2f2;
+            color: #991b1b;
+            text-align: center;
+            padding: 0.5rem;
+            font-size: 0.875rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            border-bottom: 1px solid #fee2e2;
+        }
+        
+        /* Adjust navigation position for ribbon */
+        nav.fixed {
+            top: 2rem;
+        }
+        
+        /* Adjust main content for ribbon */
+        .pt-24 {
+            padding-top: 6rem !important;
+        }
+        
+        @media (max-width: 768px) {
+            .ribbon {
+                font-size: 0.75rem;
+                padding: 0.25rem;
+            }
+            nav.fixed {
+                top: 1.5rem;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#a61d4c',
+                            dark: '#8a1640'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Add Ribbon Banner -->
+    <div class="ribbon" role="alert">
+        <div class="flex items-center justify-center gap-2">
+            <i class="bi bi-info-circle"></i>
+            <span>This is a UI/UX concept redesign by an independent developer for learning purposes. Not affiliated with BMT.</span>
+            <button onclick="this.parentElement.parentElement.style.display='none'" class="ml-2 hover:text-red-800">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-50 top-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <img src="https://www.bmt.co.zm/assets/img/absa-logo-bg.png" alt="BMT Logo" class="h-8 w-auto">
+                    <span class="ml-2 text-xl font-bold text-primary">BMT</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-primary">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-primary">About</a>
+                    <a href="#services" class="text-gray-700 hover:text-primary">Services</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-primary">Pricing</a>
+                    <a href="#faq" class="text-gray-700 hover:text-primary">FAQs</a>
+                    <a href="dashboard.html" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 md:hidden">
+        <div class="p-4 border-b">
+            <img src="https://www.bmt.co.zm/assets/img/absa-logo-bg.png" alt="BMT Logo" class="h-8 w-auto">
+        </div>
+        <nav class="p-4">
+            <a href="#" class="block py-2 text-gray-700 hover:text-primary">Home</a>
+            <a href="#about" class="block py-2 text-gray-700 hover:text-primary">About</a>
+            <a href="#services" class="block py-2 text-gray-700 hover:text-primary">Services</a>
+            <a href="#pricing" class="block py-2 text-gray-700 hover:text-primary">Pricing</a>
+            <a href="#faq" class="block py-2 text-gray-700 hover:text-primary">FAQs</a>
+            <a href="dashboard.html" class="block py-2 bg-primary text-white px-4 rounded-lg hover:bg-primary-dark mt-4">Login</a>
+        </nav>
+    </div>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button class="md:hidden fixed top-4 right-4 z-50 bg-white p-2 rounded-lg shadow-lg" id="menuToggle">
+        <i class="bi bi-list text-2xl"></i>
+    </button>
+
+    <!-- Enhanced Hero Section -->
+    <section class="pt-20 md:pt-24 pb-12 bg-gradient-to-br from-gray-100 to-white">
+        <div class="container-fluid max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div data-aos="fade-right" class="hero-text">
+                    <span class="text-primary font-semibold mb-2 block">Welcome to BMT Zambia</span>
+                    <h1 class="text-5xl font-bold text-gray-900 mb-6 gradient-text">
+                        Transforming Banking in Zambia
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Experience modern banking solutions designed for Zambian businesses. From SMEs to large corporations, 
+                        we provide innovative financial tools that understand the local market dynamics.
+                    </p>
+                    <div class="space-x-4 hero-buttons flex flex-wrap gap-4 justify-start">
+                        <a href="#" class="bg-primary text-white px-8 py-4 rounded-lg hover:bg-primary-dark inline-block transition-all">
+                            Start Free Trial
+                        </a>
+                        <a href="#" class="border border-primary text-primary px-8 py-4 rounded-lg hover:bg-gray-50 inline-block transition-all">
+                            Schedule Demo
+                        </a>
+                    </div>
+                    <div class="mt-8 flex items-center space-x-4">
+                        <div class="flex -space-x-2">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" class="w-8 h-8 rounded-full border-2 border-white">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" class="w-8 h-8 rounded-full border-2 border-white">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150" class="w-8 h-8 rounded-full border-2 border-white">
+                        </div>
+                        <p class="text-sm text-gray-600">Trusted by 1,000+ Zambian businesses</p>
+                    </div>
+                </div>
+                <div class="hidden md:block" data-aos="fade-left">
+                    <img src="https://www.bmt.co.zm/assets/img/absa/absa1.png" alt="BMT Platform" 
+                         class="rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add after the hero section -->
+    <section class="py-8 bg-primary/5">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm border border-primary/10">
+                <div class="flex items-center gap-3">
+                    <span class="px-3 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full">New</span>
+                    <p class="text-sm">Introducing BMT App - Download Now!</p>
+                </div>
+                <a href="#" class="text-primary hover:text-primary-dark text-sm">Learn More →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Statistics Section -->
+    <section class="py-12 bg-white">
+        <div class="container-fluid max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center stats-grid">
+                <div data-aos="fade-up">
+                    <p class="text-4xl font-bold text-primary">1K+</p>
+                    <p class="text-gray-600">Zambian Businesses</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <p class="text-4xl font-bold text-primary">K100M+</p>
+                    <p class="text-gray-600">Transactions</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <p class="text-4xl font-bold text-primary">10</p>
+                    <p class="text-gray-600">Provinces Covered</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <p class="text-4xl font-bold text-primary">24/7</p>
+                    <p class="text-gray-600">Local Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="py-16 md:py-20 bg-white">
+        <div class="container-fluid max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 gradient-text">Why Choose BMT</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 features-grid">
+                <div class="p-6 bg-gray-50 rounded-xl" data-aos="fade-up">
+                    <i class="bi bi-currency-exchange text-3xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Local Currency Support</h3>
+                    <p class="text-gray-600">Full support for Zambian Kwacha (ZMW) transactions and multi-currency accounts.</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+                    <i class="bi bi-phone text-3xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Mobile Money Integration</h3>
+                    <p class="text-gray-600">Seamless integration with popular mobile money services in Zambia.</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-xl" data-aos="fade-up" data-aos-delay="200">
+                    <i class="bi bi-shield-check text-3xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">BOZ Compliant</h3>
+                    <p class="text-gray-600">Fully compliant with Bank of Zambia regulations and guidelines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Comprehensive Financial Solutions</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Everything you need to manage, grow, and protect your business finances in one powerful platform.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="service-card p-6 bg-gray-50 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+                    <i class="bi bi-bank text-3xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Financial Services</h3>
+                    <p class="text-gray-600">Comprehensive banking solutions for businesses of all sizes.</p>
+                </div>
+                <div class="service-card p-6 bg-gray-50 rounded-xl" data-aos="fade-up" data-aos-delay="200">
+                    <i class="bi bi-graph-up-arrow text-3xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Investment Options</h3>
+                    <p class="text-gray-600">Strategic investment opportunities for growth and expansion.</p>
+                </div>
+                <div class="service-card p-6 bg-gray-50 rounded-xl" data-aos="fade-up" data-aos-delay="300">
+                    <i class="bi bi-shield-check text-3xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Security & Trust</h3>
+                    <p class="text-gray-600">Advanced security measures to protect your financial assets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Slider -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">What Our Clients Say</h2>
+            <div class="relative">
+                <div class="testimonial-slider flex overflow-x-auto snap-x snap-mandatory hide-scrollbar">
+                    <div class="testimonial-slide flex-none w-full md:w-1/2 p-6">
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-semibold">Mulenga Chipimo</h4>
+                                    <p class="text-sm text-gray-600">CEO, Copper Belt Trading</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600">"BMT understands the unique challenges of running a business in Zambia. Their platform has helped us streamline our operations significantly."</p>
+                        </div>
+                    </div>
+                    <!-- Second testimonial -->
+                    <div class="testimonial-slide flex-none w-full md:w-1/2 p-6">
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <img src="https://images.unsplash.com/photo-1598550880863-4e8aa3d0edb4?w=150" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-semibold">Thandiwe Banda</h4>
+                                    <p class="text-sm text-gray-600">Founder, Lusaka Fresh Produce</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600">"The mobile money integration has revolutionized how we handle payments. Our customers love the convenience, and our cash flow has improved tremendously."</p>
+                        </div>
+                    </div>
+                    <!-- Third testimonial -->
+                    <div class="testimonial-slide flex-none w-full md:w-1/2 p-6">
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <div class="flex items-center mb-4">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <h4 class="font-semibold">Chanda Mutale</h4>
+                                    <p class="text-sm text-gray-600">Director, Kitwe Tech Solutions</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600">"As a tech company, we needed a banking partner that understood digital transformation. BMT's API integration capabilities have exceeded our expectations."</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add testimonial navigation dots -->
+                <div class="flex justify-center mt-6 space-x-2 testimonial-dots">
+                    <button class="w-2 h-2 rounded-full bg-primary"></button>
+                    <button class="w-2 h-2 rounded-full bg-gray-300"></button>
+                    <button class="w-2 h-2 rounded-full bg-gray-300"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add before pricing section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Trusted Partners</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-70">
+                <img src="https://via.placeholder.com/150x50" alt="Partner 1" class="h-12 object-contain">
+                <img src="https://via.placeholder.com/150x50" alt="Partner 2" class="h-12 object-contain">
+                <img src="https://via.placeholder.com/150x50" alt="Partner 3" class="h-12 object-contain">
+                <img src="https://via.placeholder.com/150x50" alt="Partner 4" class="h-12 object-contain">
+            </div>
+        </div>
+    </section>
+
+    <!-- New Pricing Section -->
+    <section id="pricing" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Simple, Transparent Pricing</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Choose the perfect plan for your business needs
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Starter Plan -->
+                <div class="pricing-card bg-white rounded-xl shadow-lg p-8" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl font-bold mb-4">Basic</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">K100</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="bi bi-check2 text-green-500 mr-2"></i>
+                            Basic financial analytics
+                        </li>
+                        <li class="flex items-center">
+                            <i class="bi bi-check2 text-green-500 mr-2"></i>
+                            24/7 customer support
+                        </li>
+                        <li class="flex items-center">
+                            <i class="bi bi-check2 text-green-500 mr-2"></i>
+                            Secure transactions
+                        </li>
+                    </ul>
+                    <a href="#" class="block text-center bg-gray-100 text-primary py-2 rounded-lg hover:bg-gray-200 transition-colors">
+                        Get Started
+                    </a>
+                </div>
+                <!-- Professional Plan -->
+                <div class="pricing-card bg-white rounded-xl shadow-lg p-8" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-bold mb-4">Professional</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">K150</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="bi bi-check2 text-green-500 mr-2"></i>
+                            Advanced financial analytics
+                        </li>
+                        <li class="flex items-center">
+                            <i class="bi bi-check2 text-green-500 mr-2"></i>
+                            Priority customer support
+                        </li>
+                        <li class="flex items-center">
+                            <i class="bi bi-check2 text-green-500 mr-2"></i>
+                            Secure transactions
+                        </li>
+                    </ul>
+                    <a href="#" class="block text-center bg-gray-100 text-primary py-2 rounded-lg hover:bg-gray-200 transition-colors">
+                        Get Started
+                    </a>
+                </div>
+                <!-- Enterprise Plan -->
+                <div class="pricing-card bg-white rounded-xl shadow-lg p-8" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-xl font-bold mb-4">Enterprise</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">K200</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="bi bi-check2 text-green-500 mr-2"></i>
+                            Comprehensive financial analytics
+                        </li>
+                        <li class="flex items-center">
+                            <i class="bi bi-check2 text-green-500 mr-2"></i>
+                            Dedicated account manager
+                        </li>
+                        <li class="flex items-center">
+                            <i class="bi bi-check2 text-green-500 mr-2"></i>
+                            Secure transactions
+                        </li>
+                    </ul>
+                    <a href="#" class="block text-center bg-gray-100 text-primary py-2 rounded-lg hover:bg-gray-200 transition-colors">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Frequently Asked Questions</h2>
+                <p class="text-lg text-gray-600">Find quick answers to common questions</p>
+            </div>
+            <div class="space-y-4">
+                <div class="faq-item bg-gray-50 rounded-lg p-4" data-aos="fade-up">
+                    <button class="flex justify-between items-center w-full text-left">
+                        <span class="font-semibold">How secure is BMT's platform?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="mt-4 text-gray-600 hidden">
+                        BMT employs bank-grade security measures including 256-bit encryption, two-factor authentication, 
+                        and regular security audits to ensure your data is always protected.
+                    </div>
+                </div>
+                <div class="faq-item bg-gray-50 rounded-lg p-4" data-aos="fade-up" data-aos-delay="100">
+                    <button class="flex justify-between items-center w-full text-left">
+                        <span class="font-semibold">What kind of customer support do you offer?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="mt-4 text-gray-600 hidden">
+                        We offer 24/7 customer support through various channels including live chat, email, and phone. Our support team is always ready to assist you with any queries or issues.
+                    </div>
+                </div>
+                <div class="faq-item bg-gray-50 rounded-lg p-4" data-aos="fade-up" data-aos-delay="200">
+                    <button class="flex justify-between items-center w-full text-left">
+                        <span class="font-semibold">Can I upgrade my plan later?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="mt-4 text-gray-600 hidden">
+                        Yes, you can upgrade your plan at any time. Simply contact our support team, and they will assist you with the upgrade process.
+                    </div>
+                </div>
+                <div class="faq-item bg-gray-50 rounded-lg p-4" data-aos="fade-up">
+                    <button class="flex justify-between items-center w-full text-left">
+                        <span class="font-semibold">Does BMT support mobile money transfers?</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="mt-4 text-gray-600 hidden">
+                        Yes, BMT fully integrates with all major mobile money providers in Zambia, making it easy to process payments and transfers through platforms like Airtel Money and MTN Mobile Money.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Ready to Transform Your Business?</h2>
+            <p class="mb-8 text-lg">Join thousands of businesses already growing with BMT</p>
+            <a href="dashboard.html" class="bg-white text-primary px-8 py-3 rounded-lg hover:bg-gray-100 inline-block">
+                Get Started Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Add before footer -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl font-bold mb-6 gradient-text">Get Our Mobile App</h2>
+                    <p class="text-gray-600 mb-8">Experience the power of BMT on your mobile device. Available for iOS and Android.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="flex items-center px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800">
+                            <i class="bi bi-apple text-2xl mr-2"></i>
+                            <div class="text-left">
+                                <div class="text-xs">Download on the</div>
+                                <div class="text-sm font-semibold">App Store</div>
+                            </div>
+                        </a>
+                        <a href="#" class="flex items-center px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800">
+                            <i class="bi bi-google-play text-2xl mr-2"></i>
+                            <div class="text-left">
+                                <div class="text-xs">Get it on</div>
+                                <div class="text-sm font-semibold">Google Play</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div data-aos="fade-left" class="hidden md:block">
+                    <img src="https://via.placeholder.com/400x600" alt="Mobile App" class="w-full max-w-md mx-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-white font-semibold mb-4">About BMT</h4>
+                    <p class="text-sm">Leading financial solutions provider committed to transforming businesses through innovative banking services.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Home</a></li>
+                        <li><a href="#about" class="hover:text-white">About</a></li>
+                        <li><a href="#services" class="hover:text-white">Services</a></li>
+                        <li><a href="#contact" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>Email: info@bmt.co.zm</li>
+                        <li>Phone: +260 XXXXXXXX</li>
+                        <li>Address: Plot No. 1234, Great East Road</li>
+                        <li>Lusaka, Zambia</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-white"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="hover:text-white"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="hover:text-white"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="hover:text-white"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-sm text-center">
+                <p>&copy; 2023 BMT. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="scroll-top bg-primary text-white p-3 rounded-full shadow-lg hover:bg-primary-dark transition-all">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Add Live Chat Widget before closing body tag -->
+    <div class="fixed bottom-4 right-4 z-50">
+        <button class="bg-primary text-white p-4 rounded-full shadow-lg hover:bg-primary-dark transition-all" 
+                onclick="toggleChat()">
+            <i class="bi bi-chat-dots text-xl"></i>
+        </button>
+        <div id="chatWidget" class="hidden absolute bottom-16 right-0 w-80 bg-white rounded-lg shadow-xl">
+            <div class="p-4 bg-primary text-white rounded-t-lg">
+                <h3 class="font-semibold">Live Chat Support</h3>
+                <p class="text-sm">We typically reply within minutes</p>
+            </div>
+            <div class="p-4 h-96 overflow-y-auto">
+                <!-- Chat messages will go here -->
+                <div class="text-center text-gray-500 text-sm">
+                    Start a conversation with us!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-item button').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.querySelector('.mobile-menu').classList.toggle('active');
+        });
+
+        // Back to top button
+        window.onscroll = function() {
+            const scrollBtn = document.querySelector('.scroll-top');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollBtn.style.display = "block";
+            } else {
+                scrollBtn.style.display = "none";
+            }
+        };
+
+        document.querySelector('.scroll-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Handle testimonial slider
+        const slider = document.querySelector('.testimonial-slider');
+        const dots = document.querySelectorAll('.testimonial-dots button');
+        const slides = document.querySelectorAll('.testimonial-slide');
+        
+        let currentSlide = 0;
+        
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('bg-primary', index === currentSlide);
+                dot.classList.toggle('bg-gray-300', index !== currentSlide);
+            });
+        }
+        
+        // Touch slider functionality
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        slider.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        slider.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) { // Minimum swipe distance
+                if (diff > 0 && currentSlide < slides.length - 1) {
+                    currentSlide++;
+                } else if (diff < 0 && currentSlide > 0) {
+                    currentSlide--;
+                }
+                updateSlider();
+            }
+        }
+        
+        function updateSlider() {
+            const slideWidth = slides[0].offsetWidth;
+            slider.scrollTo({
+                left: slideWidth * currentSlide,
+                behavior: 'smooth'
+            });
+            updateDots();
+        }
+        
+        // Handle viewport changes
+        window.addEventListener('resize', () => {
+            updateSlider();
+        });
+        
+        // Initialize slider
+        updateSlider();
+        
+        // Enhanced mobile menu handling
+        document.addEventListener('click', (e) => {
+            const menu = document.querySelector('.mobile-menu');
+            const menuBtn = document.getElementById('menuToggle');
+            
+            if (!menu.contains(e.target) && !menuBtn.contains(e.target) && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+            }
+        });
+
+        function toggleChat() {
+            const chatWidget = document.getElementById('chatWidget');
+            chatWidget.classList.toggle('hidden');
+        }
+
+        // Add smooth reveal animation for sections
+        const revealElements = document.querySelectorAll('[data-aos]');
+        const revealOptions = {
+            threshold: 0.1,
+            rootMargin: '0px'
+        };
+
+        const revealOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('aos-animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(element => {
+            revealOnScroll.observe(element);
+        });
+    </script>
+</body>
+</html>

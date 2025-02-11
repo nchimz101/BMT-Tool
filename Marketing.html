@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMT - Marketing</title>
+    <!-- Same head content as index.html -->
+    <link href="https://www.bmt.co.zm/assets/img/absa-logo-bg.png" rel="icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Tailwind config from index.html -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#a61d4c',
+                            dark: '#8a1640'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="sidebar w-64 bg-white shadow-sm fixed md:relative">
+            <div class="p-4 border-b flex items-center">
+                <img src="https://www.bmt.co.zm/assets/img/absa-logo-bg.png" alt="BMT Logo" class="h-8 w-auto mr-3">
+                <h1 class="text-xl font-bold text-primary">BMT</h1>
+            </div>
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-speedometer2 mr-3"></i>Dashboard
+                    </a></li>
+                    <li><a href="Transactions.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-cash-stack mr-3"></i>Transactions
+                    </a></li>
+                    <li><a href="Accounting.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-calculator mr-3"></i>Accounting
+                    </a></li>
+                    <li><a href="HR.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-people mr-3"></i>HR
+                    </a></li>
+                    <li><a href="Sales&Purchases.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-cart mr-3"></i>Sales & Purchases
+                    </a></li>
+                    <li><a href="Marketing.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-megaphone mr-3"></i>Marketing
+                    </a></li>
+                </ul>
+                <div class="mt-4 pt-4 border-t">
+                    <h3 class="text-sm font-semibold text-gray-600 mb-2 px-2">Quick Links</h3>
+                    <ul>
+                        <li><a href="settings.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                            <i class="bi bi-gear mr-3"></i>Settings
+                        </a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-4 main-content">
+            <!-- Header -->
+            <header class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-primary">Marketing Dashboard</h2>
+                <div class="flex items-center space-x-4">
+                    <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark">
+                        <i class="bi bi-plus-lg mr-2"></i>New Campaign
+                    </button>
+                </div>
+            </header>
+
+            <!-- Marketing Overview Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-600 text-sm">Active Campaigns</p>
+                            <h3 class="text-2xl font-bold text-primary mt-1">12</h3>
+                        </div>
+                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                            +3 this month
+                        </span>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-600 text-sm">Total Leads</p>
+                            <h3 class="text-2xl font-bold text-primary mt-1">847</h3>
+                        </div>
+                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                            +15.7%
+                        </span>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-600 text-sm">Marketing ROI</p>
+                            <h3 class="text-2xl font-bold text-primary mt-1">324%</h3>
+                        </div>
+                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                            +2.4%
+                        </span>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-600 text-sm">Budget Utilized</p>
+                            <h3 class="text-2xl font-bold text-primary mt-1">67%</h3>
+                        </div>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                            K45,000 left
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketing Tools Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                <!-- Campaign Management -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Campaign Management</h3>
+                        <button class="text-primary hover:text-primary-dark">
+                            <i class="bi bi-plus-circle"></i>
+                        </button>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-gray-50 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Q4 Product Launch</span>
+                                <span class="text-green-600 text-sm">Active</span>
+                            </div>
+                            <div class="mt-2">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-primary h-2.5 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add more campaigns here -->
+                    </div>
+                </div>
+
+                <!-- Lead Analytics -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Lead Analytics</h3>
+                    <div class="h-[200px]">
+                        <canvas id="leadAnalyticsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Email Marketing -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Email Campaigns</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="font-medium">Open Rate</p>
+                                <p class="text-2xl font-bold text-primary">24.8%</p>
+                            </div>
+                            <div>
+                                <p class="font-medium">Click Rate</p>
+                                <p class="text-2xl font-bold text-primary">12.3%</p>
+                            </div>
+                        </div>
+                        <div class="h-[150px]">
+                            <canvas id="emailMetricsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media Integration -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Social Media Overview</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
+                            <div class="flex items-center">
+                                <i class="bi bi-facebook text-blue-600 text-xl mr-3"></i>
+                                <span>Facebook</span>
+                            </div>
+                            <span class="font-semibold">12.4K followers</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
+                            <div class="flex items-center">
+                                <i class="bi bi-twitter text-blue-400 text-xl mr-3"></i>
+                                <span>Twitter</span>
+                            </div>
+                            <span class="font-semibold">8.7K followers</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
+                            <div class="flex items-center">
+                                <i class="bi bi-linkedin text-blue-700 text-xl mr-3"></i>
+                                <span>LinkedIn</span>
+                            </div>
+                            <span class="font-semibold">5.2K followers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Calendar -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Content Calendar</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center p-2 bg-gray-50 rounded">
+                            <div class="flex-1">
+                                <p class="font-medium">Blog Post: Marketing Strategy 2024</p>
+                                <p class="text-sm text-gray-600">Due: Dec 20, 2023</p>
+                            </div>
+                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Draft</span>
+                        </div>
+                        <div class="flex items-center p-2 bg-gray-50 rounded">
+                            <div class="flex-1">
+                                <p class="font-medium">Social Media Campaign</p>
+                                <p class="text-sm text-gray-600">Due: Dec 25, 2023</p>
+                            </div>
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">In Progress</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Competitor Analysis -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Competitor Analysis</h3>
+                    <div class="h-[200px]">
+                        <canvas id="competitorChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    // Lead Analytics Chart
+                    new Chart(document.getElementById('leadAnalyticsChart'), {
+                        type: 'line',
+                        data: {
+                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                            datasets: [{
+                                label: 'New Leads',
+                                data: [65, 59, 80, 81, 56, 55],
+                                borderColor: '#a61d4c',
+                                tension: 0.3
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false
+                        }
+                    });
+
+                    // Email Metrics Chart
+                    new Chart(document.getElementById('emailMetricsChart'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                            datasets: [{
+                                label: 'Open Rate',
+                                data: [24, 28, 23, 25],
+                                backgroundColor: '#a61d4c'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false
+                        }
+                    });
+
+                    // Competitor Analysis Chart
+                    new Chart(document.getElementById('competitorChart'), {
+                        type: 'radar',
+                        data: {
+                            labels: ['Brand Awareness', 'Market Share', 'Social Media', 'Customer Satisfaction', 'Price Point'],
+                            datasets: [{
+                                label: 'Our Company',
+                                data: [85, 75, 90, 80, 85],
+                                borderColor: '#a61d4c',
+                                backgroundColor: 'rgba(166, 29, 76, 0.2)'
+                            },
+                            {
+                                label: 'Competitor',
+                                data: [90, 85, 75, 85, 80],
+                                borderColor: '#3B82F6',
+                                backgroundColor: 'rgba(59, 130, 246, 0.2)'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false
+                        }
+                    });
+                });
+            </script>
+        </main>
+    </div>
+</body>
+</html>

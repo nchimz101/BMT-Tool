@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMT - Human Resources</title>
+    <link href="https://www.bmt.co.zm/assets/img/absa-logo-bg.png" rel="icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#a61d4c',
+                            dark: '#8a1640'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="sidebar w-64 bg-white shadow-sm fixed md:relative">
+            <div class="p-4 border-b flex items-center">
+                <img src="https://www.bmt.co.zm/assets/img/absa-logo-bg.png" alt="BMT Logo" class="h-8 w-auto mr-3">
+                <h1 class="text-xl font-bold text-primary">BMT</h1>
+            </div>
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-speedometer2 mr-3"></i>Dashboard
+                    </a></li>
+                    <li><a href="Transactions.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-cash-stack mr-3"></i>Transactions
+                    </a></li>
+                    <li><a href="Accounting.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-calculator mr-3"></i>Accounting
+                    </a></li>
+                    <li><a href="HR.html" class="flex items-center p-2 bg-primary text-white rounded-lg">
+                        <i class="bi bi-people mr-3"></i>HR
+                    </a></li>
+                    <li><a href="Sales&Purchases.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-cart mr-3"></i>Sales & Purchases
+                    </a></li>
+                    <li><a href="Marketing.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-megaphone mr-3"></i>Marketing
+                    </a></li>
+                </ul>
+                <div class="mt-4 pt-4 border-t">
+                    <h3 class="text-sm font-semibold text-gray-600 mb-2 px-2">Quick Links</h3>
+                    <ul>
+                        <li><a href="settings.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                            <i class="bi bi-gear mr-3"></i>Settings
+                        </a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-4 main-content">
+            <!-- Header -->
+            <header class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-primary">Human Resources Management</h2>
+                <div class="flex items-center space-x-4">
+                    <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark">
+                        <i class="bi bi-person-plus mr-2"></i>Add Employee
+                    </button>
+                </div>
+            </header>
+
+            <!-- HR Overview Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-600 text-sm">Total Employees</p>
+                            <h3 class="text-2xl font-bold text-primary mt-1">156</h3>
+                        </div>
+                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                            +5 this month
+                        </span>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-600 text-sm">Open Positions</p>
+                            <h3 class="text-2xl font-bold text-primary mt-1">8</h3>
+                        </div>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                            3 urgent
+                        </span>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-600 text-sm">Leave Requests</p>
+                            <h3 class="text-2xl font-bold text-primary mt-1">12</h3>
+                        </div>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                            Pending
+                        </span>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-600 text-sm">Training Programs</p>
+                            <h3 class="text-2xl font-bold text-primary mt-1">5</h3>
+                        </div>
+                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                            Active
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                <!-- Employee Demographics -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Employee Demographics</h3>
+                    <div class="h-[250px]">
+                        <canvas id="demographicsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Department Distribution -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Department Distribution</h3>
+                    <div class="h-[250px]">
+                        <canvas id="departmentChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Performance Metrics -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Performance Overview</h3>
+                    <div class="h-[250px]">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Leave Management -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold">Leave Requests</h3>
+                        <button class="text-primary hover:text-primary-dark">
+                            <i class="bi bi-plus-circle"></i>
+                        </button>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-gray-50 rounded">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="font-medium">John Doe</p>
+                                    <p class="text-sm text-gray-600">Annual Leave</p>
+                                </div>
+                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Pending</span>
+                            </div>
+                            <div class="mt-2 text-sm text-gray-500">Dec 20-27, 2023</div>
+                        </div>
+                        <div class="p-3 bg-gray-50 rounded">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="font-medium">Jane Smith</p>
+                                    <p class="text-sm text-gray-600">Sick Leave</p>
+                                </div>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Approved</span>
+                            </div>
+                            <div class="mt-2 text-sm text-gray-500">Dec 18, 2023</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Recruits -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Recent Recruits</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center p-3 bg-gray-50 rounded">
+                            <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-3">
+                                JD
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-medium">James Davis</p>
+                                <p class="text-sm text-gray-600">Software Developer</p>
+                            </div>
+                            <span class="text-sm text-gray-500">Joined Dec 1</span>
+                        </div>
+                        <div class="flex items-center p-3 bg-gray-50 rounded">
+                            <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center mr-3">
+                                ML
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-medium">Mary Lee</p>
+                                <p class="text-sm text-gray-600">Marketing Specialist</p>
+                            </div>
+                            <span class="text-sm text-gray-500">Joined Nov 28</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Training Programs -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Training Programs</h3>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-gray-50 rounded">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="font-medium">Leadership Development</p>
+                                    <p class="text-sm text-gray-600">15 Participants</p>
+                                </div>
+                                <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">In Progress</span>
+                            </div>
+                            <div class="mt-2">
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-primary h-2 rounded-full" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-gray-50 rounded">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="font-medium">Technical Skills</p>
+                                    <p class="text-sm text-gray-600">23 Participants</p>
+                                </div>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Completed</span>
+                            </div>
+                            <div class="mt-2">
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-primary h-2 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    // Employee Demographics Chart
+                    new Chart(document.getElementById('demographicsChart'), {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['18-25', '26-35', '36-45', '46+'],
+                            datasets: [{
+                                data: [15, 45, 30, 10],
+                                backgroundColor: ['#10B981', '#3B82F6', '#F59E0B', '#EF4444']
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom'
+                                }
+                            }
+                        }
+                    });
+
+                    // Department Distribution Chart
+                    new Chart(document.getElementById('departmentChart'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['IT', 'Sales', 'Marketing', 'HR', 'Finance'],
+                            datasets: [{
+                                label: 'Employees',
+                                data: [45, 30, 25, 15, 20],
+                                backgroundColor: '#a61d4c'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            }
+                        }
+                    });
+
+                    // Performance Metrics Chart
+                    new Chart(document.getElementById('performanceChart'), {
+                        type: 'radar',
+                        data: {
+                            labels: ['Productivity', 'Quality', 'Attendance', 'Teamwork', 'Innovation'],
+                            datasets: [{
+                                label: 'Average Score',
+                                data: [85, 78, 92, 88, 76],
+                                borderColor: '#a61d4c',
+                                backgroundColor: 'rgba(166, 29, 76, 0.2)',
+                                borderWidth: 2,
+                                pointBackgroundColor: '#a61d4c'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                r: {
+                                    beginAtZero: true,
+                                    max: 100,
+                                    ticks: {
+                                        stepSize: 20
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            }
+                        }
+                    });
+                });
+            </script>
+        </main>
+    </div>
+</body>
+</html>

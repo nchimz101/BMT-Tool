@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMT - Sales & Purchases</title>
+    <link href="https://www.bmt.co.zm/assets/img/absa-logo-bg.png" rel="icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#a61d4c',
+                            dark: '#8a1640'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="sidebar w-64 bg-white shadow-sm fixed md:relative">
+            <div class="p-4 border-b flex items-center">
+                <img src="https://www.bmt.co.zm/assets/img/absa-logo-bg.png" alt="BMT Logo" class="h-8 w-auto mr-3">
+                <h1 class="text-xl font-bold text-primary">BMT</h1>
+            </div>
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-speedometer2 mr-3"></i>Dashboard
+                    </a></li>
+                    <li><a href="Transactions.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-cash-stack mr-3"></i>Transactions
+                    </a></li>
+                    <li><a href="Accounting.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-calculator mr-3"></i>Accounting
+                    </a></li>
+                    <li><a href="HR.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-people mr-3"></i>HR
+                    </a></li>
+                    <li><a href="Sales&Purchases.html" class="flex items-center p-2 bg-primary text-white rounded-lg">
+                        <i class="bi bi-cart mr-3"></i>Sales & Purchases
+                    </a></li>
+                    <li><a href="Marketing.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <i class="bi bi-megaphone mr-3"></i>Marketing
+                    </a></li>
+                </ul>
+                <div class="mt-4 pt-4 border-t">
+                    <h3 class="text-sm font-semibold text-gray-600 mb-2 px-2">Quick Links</h3>
+                    <ul>
+                        <li><a href="settings.html" class="flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                            <i class="bi bi-gear mr-3"></i>Settings
+                        </a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-4 main-content">
+            <!-- Header -->
+            <header class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-primary">Sales & Purchases Management</h2>
+                <div class="flex items-center space-x-4">
+                    <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark">
+                        <i class="bi bi-plus-lg mr-2"></i>New Sale
+                    </button>
+                    <button class="border border-primary text-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white">
+                        <i class="bi bi-bag-plus mr-2"></i>New Purchase
+                    </button>
+                </div>
+            </header>
+
+            <!-- Overview Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-600 text-sm">Total Sales</p>
+                            <h3 class="text-2xl font-bold text-primary mt-1">K289,450</h3>
+                        </div>
+                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                            +12.5%
+                        </span>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-600 text-sm">Total Purchases</p>
+                            <h3 class="text-2xl font-bold text-primary mt-1">K156,780</h3>
+                        </div>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                            +5.2%
+                        </span>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-600 text-sm">Active Orders</p>
+                            <h3 class="text-2xl font-bold text-primary mt-1">45</h3>
+                        </div>
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                            12 pending
+                        </span>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-gray-600 text-sm">Inventory Value</p>
+                            <h3 class="text-2xl font-bold text-primary mt-1">K423,670</h3>
+                        </div>
+                        <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                            156 items
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                <!-- Sales Performance -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Sales Performance</h3>
+                    <div class="h-[200px]">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Inventory Status -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Inventory Status</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm">Stock Health</span>
+                            <span class="text-green-600 font-medium">Good</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span>In Stock</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span>Low Stock</span>
+                                <span>10%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 10%"></div>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span>Out of Stock</span>
+                                <span>5%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-red-500 h-2 rounded-full" style="width: 5%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supplier Performance -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Supplier Performance</h3>
+                    <div class="h-[200px]">
+                        <canvas id="supplierChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Quotations -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold">Recent Quotations</h3>
+                        <button class="text-primary hover:text-primary-dark">
+                            <i class="bi bi-plus-circle"></i>
+                        </button>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-gray-50 rounded">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="font-medium">Office Equipment</p>
+                                    <p class="text-sm text-gray-600">Client: Tech Solutions Ltd</p>
+                                </div>
+                                <span class="text-primary font-semibold">K24,500</span>
+                            </div>
+                            <div class="mt-2 flex items-center text-sm text-gray-500">
+                                <i class="bi bi-clock mr-1"></i>
+                                <span>Expires in 5 days</span>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-gray-50 rounded">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="font-medium">IT Services</p>
+                                    <p class="text-sm text-gray-600">Client: DataCore Inc</p>
+                                </div>
+                                <span class="text-primary font-semibold">K18,750</span>
+                            </div>
+                            <div class="mt-2 flex items-center text-sm text-gray-500">
+                                <i class="bi bi-clock mr-1"></i>
+                                <span>Expires in 3 days</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Invoices -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold">Recent Invoices</h3>
+                        <button class="text-primary hover:text-primary-dark">
+                            <i class="bi bi-plus-circle"></i>
+                        </button>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-gray-50 rounded">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="font-medium">#INV-2023-001</p>
+                                    <p class="text-sm text-gray-600">Due: Dec 20, 2023</p>
+                                </div>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Paid</span>
+                            </div>
+                            <div class="mt-2 flex justify-between items-center">
+                                <span class="text-sm text-gray-500">Tech Solutions Ltd</span>
+                                <span class="font-semibold">K12,450</span>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-gray-50 rounded">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="font-medium">#INV-2023-002</p>
+                                    <p class="text-sm text-gray-600">Due: Dec 25, 2023</p>
+                                </div>
+                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Pending</span>
+                            </div>
+                            <div class="mt-2 flex justify-between items-center">
+                                <span class="text-sm text-gray-500">DataCore Inc</span>
+                                <span class="font-semibold">K8,750</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer/Vendor Database -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Contacts Overview</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-3 bg-gray-50 rounded text-center">
+                            <p class="text-gray-600 text-sm">Customers</p>
+                            <p class="text-2xl font-bold text-primary">234</p>
+                            <p class="text-xs text-green-600">+12 this month</p>
+                        </div>
+                        <div class="p-3 bg-gray-50 rounded text-center">
+                            <p class="text-gray-600 text-sm">Vendors</p>
+                            <p class="text-2xl font-bold text-primary">85</p>
+                            <p class="text-xs text-green-600">+3 this month</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    // Sales Performance Chart
+                    new Chart(document.getElementById('salesChart'), {
+                        type: 'line',
+                        data: {
+                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                            datasets: [{
+                                label: 'Sales',
+                                data: [65000, 59000, 80000, 81000, 56000, 85000],
+                                borderColor: '#a61d4c',
+                                tension: 0.3,
+                                fill: true,
+                                backgroundColor: 'rgba(166, 29, 76, 0.1)'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false }
+                            }
+                        }
+                    });
+
+                    // Supplier Performance Chart
+                    new Chart(document.getElementById('supplierChart'), {
+                        type: 'radar',
+                        data: {
+                            labels: ['Quality', 'On-time Delivery', 'Price', 'Communication', 'Reliability'],
+                            datasets: [{
+                                label: 'Top Supplier',
+                                data: [90, 85, 88, 84, 90],
+                                borderColor: '#a61d4c',
+                                backgroundColor: 'rgba(166, 29, 76, 0.2)'
+                            },
+                            {
+                                label: 'Average',
+                                data: [75, 70, 75, 70, 75],
+                                borderColor: '#3B82F6',
+                                backgroundColor: 'rgba(59, 130, 246, 0.2)'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                r: {
+                                    beginAtZero: true,
+                                    max: 100,
+                                    ticks: {
+                                        stepSize: 20
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+            </script>
+        </main>
+    </div>
+</body>
+</html>
